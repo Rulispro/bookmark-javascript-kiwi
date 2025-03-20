@@ -1,18 +1,25 @@
- let count = 0;
-let interval = setInterval(() => {
-    let btn = document.querySelector('button[type="submit"]:not([disabled])'); // Tombol "Tambahkan Teman" di m.facebook.com
+javascript: (function () {
+  let count = 0;
+  const maxCount = 50;
+  const intervalTime = 3000; // 3 detik
 
-    if (!btn) {
-        window.scrollBy(0, 300); // Scroll ke bawah jika tombol belum muncul
-        return;
+  const intervalId = setInterval(() => {
+    let addButton =
+      document.querySelector('[aria-label="Add Friend"]') ||
+      document.querySelector('[aria-label="Tambahkan Teman"]');
+
+    if (addButton) {
+      addButton.click();
+      count++;
+      console.log(`✅ Menambahkan teman ke-${count}`);
+
+      if (count >= maxCount) {
+        clearInterval(intervalId);
+        console.log('🎉 Selesai! Total 50 teman telah ditambahkan.');
+      }
+    } else {
+      console.log('🔍 Tidak ada tombol Add Friend, scrolling ke bawah...');
+      window.scrollBy(0, 500);
     }
-
-    btn.click();
-    count++;
-    console.log(`✅ Klik ${count} dari 50`);
-
-    if (count >= 50) {
-        clearInterval(interval);
-        alert(`✅ Selesai! ${count} teman telah ditambahkan.`);
-    }
-}, 3000);
+  }, intervalTime);
+})();
