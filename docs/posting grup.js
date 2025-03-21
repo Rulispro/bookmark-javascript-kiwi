@@ -70,3 +70,16 @@ javascript:(function() {
     }
 })();
   
+
+
+
+
+// masukkan grupnya di console.log
+
+
+localStorage.setItem('fb_group_list', JSON.stringify([
+    'https://www.facebook.com/groups/GroupID1',
+    'https://www.facebook.com/groups/GroupID2',
+    'https://www.facebook.com/groups/GroupID3'
+]));
+localStorage.setItem('fb_group_index', '0');
