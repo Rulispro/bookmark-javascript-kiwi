@@ -1,20 +1,2 @@
-javascript:(function(){
-    let index = 0;
-    const delay = 2500;
-
-    function likeNext() {
-        const likeButtons = document.querySelectorAll('svg[aria-label="Like"][width="24"]');
-        if (index >= likeButtons.length) {
-            console.log("✅ Semua post di halaman sudah di-like.");
-            return;
-        }
-
-        likeButtons[index].parentNode.click();
-        console.log(`❤️ Like post ke-${index + 1}`);
-        index++;
-
-        setTimeout(likeNext, delay);
-    }
-
-    likeNext();
-})();
+javascript:(async()=>{let max=+prompt("Total klik tombol Like? (Contoh: 12)"),interval=+prompt("Jeda antar klik (ms)? (Contoh: 3000)");if(isNaN(max)||isNaN(interval)||max<=0||interval<0)return alert("Input tidak valid.");let delay=ms=>new Promise(r=>setTimeout(r,ms)),count=0,clicked=new Set();window.scrollTo(0,0);await delay(500);while(count<max){let btns=[...document.querySelectorAll('svg[aria-label="Suka"]')].map(svg=>svg.closest('[role=button]')).filter(btn=>btn&&btn.offsetParent!==null&&!clicked.has(btn));if(btns.length===0){window.scrollBy(0,500);await delay(500);continue}let btn=btns[0];clicked.add(btn);btn.scrollIntoView({behavior:"smooth"});btn.click();console.log("Klik love ke",++count);await delay(interval);}})()
+                                                                                                                                                                                                                                                                                                                                                             
